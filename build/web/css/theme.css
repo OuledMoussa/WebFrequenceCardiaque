@@ -1,0 +1,167 @@
+/*******************************************************************************
+ *                            Thème principal du site
+ ******************************************************************************/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+   flex: 1 0 auto;
+}
+
+/*
+ * Apparence du texte sous l'invite de connexion
+ */
+.petit {
+    color: grey;
+    font-size: 75%;
+}
+
+
+/*******************************************************************************
+ *                        Couleurs du texte du Dropdown 
+ ******************************************************************************/
+.dropdown-content li>a {
+  color: #2196f3;
+}
+
+
+/*******************************************************************************
+ *            Change les couleurs des inputs quand on clique dessus 
+ ******************************************************************************/
+
+/* label color */
+.input-field label {
+    color: grey;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: #2196f3;
+}
+
+.input-field input[type=password]:focus + label {
+    color: #2196f3;
+}
+
+.input-field input[type=number]:focus + label {
+    color: #2196f3;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #2196f3;
+    box-shadow: 0 1px 0 0 #2196f3;
+}
+
+.input-field input[type=password]:focus {
+    border-bottom: 1px solid #2196f3;
+    box-shadow: 0 1px 0 0 #2196f3;
+}
+
+.input-field input[type=number]:focus {
+    border-bottom: 1px solid #2196f3;
+    box-shadow: 0 1px 0 0 #2196f3;
+}
+
+/* valid color */
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #2196f3;
+    box-shadow: 0 1px 0 0 #2196f3;
+}
+
+.input-field input[type=password].valid {
+    border-bottom: 1px solid #2196f3;
+    box-shadow: 0 1px 0 0 #2196f3;
+}
+
+.input-field input[type=number].valid {
+    border-bottom: 1px solid #2196f3;
+    box-shadow: 0 1px 0 0 #2196f3;
+}
+
+/* invalid color */
+.input-field input[type=text].invalid {
+    border-bottom: 1px solid #f44336 ;
+    box-shadow: 0 1px 0 0 #f44336 ;
+}
+
+.input-field input[type=password].invalid {
+    border-bottom: 1px solid #f44336 ;
+    box-shadow: 0 1px 0 0 #f44336 ;
+}
+
+.input-field input[type=number].invalid {
+    border-bottom: 1px solid #f44336 ;
+    box-shadow: 0 1px 0 0 #f44336 ;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #2196f3;
+}
+
+/*******************************************************************************
+ *                            Thème du Calendrier
+ ******************************************************************************/
+
+.picker__date-display {
+ background-color: #2196f3;
+}
+.picker__day.picker__day--today {
+   color: #2196f3;
+}
+.picker__weekday-display {
+   background-color: #1976d2;
+}
+
+/*
+* Boutons fermeture et aujourd'hui
+*/
+.btn-flat.picker__close, .btn-flat.picker__today {
+   color: #2196f3;
+}
+
+/*
+* Apparence du jour sélectionné
+*/
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+   background-color: #2196f3;
+}
+
+/*
+* Flèches de sélection du mois
+*/
+.picker__nav--next:hover,.picker__nav--prev:hover {
+   background-color: #90caf9;
+}
+
+/*
+* Comportement des boutons du bas du calendrier
+*/
+button.picker__today:focus, button.picker__clear:focus, button.picker__close:focus {
+ background-color: #90caf9;
+}
+
+
+/*******************************************************************************
+ *                     Thème de la vérification de l'inscription
+ ******************************************************************************/
+
+div.errorTxt1, div.errorTxt2, div.errorTxt3, div.errorTxt4, div.errorTxt5, div.errorTxt6, 
+div.errorTxt7, div.errorTxt8, div.errorTxt9 {
+    color: #f44336;
+    font-size: 10px;
+    margin-bottom:0px;
+    margin-top: -15px;
+    
+}
+
+
+
+/* Change la couleur du texte des listes déroulantes */
+ul.dropdown-content.select-dropdown li span {
+    color: #2196f3; 
+}

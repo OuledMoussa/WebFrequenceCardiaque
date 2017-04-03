@@ -1,0 +1,66 @@
+@media screen and (min-width:680px) {
+    i.material-icons.left.deep-orange-text{
+        font-size: 30px;
+        width: 45px;
+        text-align: center;
+        
+        -webkit-animation-name: coeur; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: ease-in-out;
+        
+        -moz-animation-name: coeur; /* Safari 4.0 - 8.0 */
+        -moz-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-timing-function: ease-in-out;
+
+        -o-animation-name: coeur; /* Safari 4.0 - 8.0 */
+        -o-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+        -o-animation-iteration-count: infinite;
+        -o-animation-timing-function: ease-in-out;
+
+        animation-name: coeur;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+    }
+
+
+
+
+    /* Safari 4.0 - 8.0 */
+    @-webkit-keyframes coeur {
+        0%   {font-size: 30px;}
+        25%  {font-size: 45px;}
+        50%  {font-size: 30px;}
+        75% {font-size: 45px;}
+        100% {font-size: 30px;}
+    }
+
+    /* Safari 4.0 - 8.0 */
+    @-moz-keyframes coeur {
+        0%   {font-size: 30px;}
+        25%  {font-size: 45px;}
+        50%  {font-size: 30px;}
+        75% {font-size: 45px;}
+        100% {font-size: 30px;}
+    }
+
+    /* Safari 4.0 - 8.0 */
+    @-o-keyframes coeur {
+        0%   {font-size: 30px;}
+        25%  {font-size: 45px;}
+        50%  {font-size: 30px;}
+        75% {font-size: 45px;}
+        100% {font-size: 30px;}
+    }
+
+    /* Standard syntax */
+    @keyframes coeur {
+        0%   {font-size: 30px;}
+        25%  {font-size: 45px;}
+        50%  {font-size: 30px;}
+        75% {font-size: 45px;}
+        100% {font-size: 30px;}
+    }
+}
