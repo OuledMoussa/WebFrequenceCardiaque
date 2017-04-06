@@ -99,8 +99,8 @@ public class DataAccessObject {
                 PreparedStatement ps = connect.prepareStatement(rq)) {
 
             try (ResultSet rs = rq.executeQuery()) {
-                int idFolder = rs.getIdFolder();
-                int tMax = rs.gettMax();
+                int idFolder = rs.getInt(rq);
+                int tMax = rs.getInt(rq);
                 int tMin = rs.gettMin();
                 boolean smoke = rs.getSmoke();
                 boolean hta = rs.getHta();

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import DB.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -54,8 +56,10 @@ public class Inscription extends HttpServlet {
             throws ServletException, IOException {
         
         // Initialisation des variables
-        String nom, prenom, sexe, ddn, login, mdp, mdp2;
+        String nom, prenom, sexe, ddn, login, mail, mdp;
         float poids, taille;
+        // variables de date
+        String jour, mois, an;
         
         // Récupération des données
         nom = request.getParameter("nom");
@@ -64,13 +68,53 @@ public class Inscription extends HttpServlet {
         ddn = request.getParameter("ddn");
         poids = Float.parseFloat(request.getParameter("poids"));
         taille = Float.parseFloat(request.getParameter("taille"));
+        mail = request.getParameter("mail");
         login = request.getParameter("login");
         mdp =request.getParameter("mdp");
-        mdp2 =request.getParameter("mdp2");
+        
+        System.out.println(nom);
+        System.out.println(prenom);
+        System.out.println(sexe);
+        System.out.println(ddn);
+        System.out.println(poids);
+        System.out.println(taille);
+        System.out.println(mail);
+        System.out.println(mdp);
+        
+        // Traitement des données recues
+        // Traitement de la date
+        String[] date = ddn.split("\\s"); // Filtre les espaces
+        // Isole le jour
+        jour = date[0];
+        // Isole le mois
+        mois = date[1];
+        // Isole l'annéee
+        an = date[2];
+        
+        // Traitment du jour
+        if (jour.length() == 1) {
+            jour = "0" + jour;
+        }
+        System.out.println(jour);
+        // Traite le mois
+        mois = mois.substring(0,mois.length()-1);
+        mois = dateJour(mois);
+        
+        // Date Finale
+        ddn = jour + "/" + mois + "/" + an;
+        System.out.println("Date de naissance : " + ddn);
+        // Traitement du mot de passe
+        
         
         // Récupération des requêtes a exécuter sur la base de données
-        //DataAccessObject dao = new DataAccessObject(getDataSource());
+        DataAccessObject dao = null;
+        try {
+            dao = new DataAccessObject(getDataSource());
+        } catch (SQLException ex) {
+            Logger.getLogger(Inscription.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+        //dao.nouveauUtilisateur(nom, prenom, ddn, taille, poids, sexe, login, mdp);
         // Exécution de la requête
         
         // Une fois bien inséré redirection sur la page de connexion
@@ -115,5 +159,51 @@ public class Inscription extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+    /**
+     * Traduit le mois du texte en caractère
+     * @param mois Le mois de l'année
+     * @return le mois en chiffre
+     */
+    private String dateJour(String mois) {
+        switch(mois) {
+            case "January": 
+                mois = "01";
+                break;
+            case "February": 
+                mois = "02";
+                break;
+            case "March": 
+                mois = "03";
+                break;
+            case "April": 
+                mois = "04";
+                break;
+            case "May": 
+                mois = "05";
+                break;
+            case "June": 
+                mois = "06";
+                break;
+            case "July": 
+                mois = "07";
+                break;
+            case "August": 
+                mois = "08";
+                break;
+            case "September": 
+                mois = "09";
+                break;
+            case "October": 
+                mois = "10";
+                break;
+            case "November": 
+                mois = "11";
+                break;
+            case "December": 
+                mois = "12";
+                break;
+        }
+        return mois;
+    }
 }

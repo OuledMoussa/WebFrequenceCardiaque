@@ -10,7 +10,7 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Acceuil</title>
+            <title>Mon Compte</title>
             <!-- Materialize CSS -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
             <!-- surcharge pour le thème material-->

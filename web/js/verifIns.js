@@ -61,7 +61,7 @@ $(document).ready(function(){
             prenom: {
                 required: true
             },
-            email: {
+            mail: {
                 required: true,
                 email:true
             },
@@ -72,10 +72,14 @@ $(document).ready(function(){
                 required: true
             },
             poids: {
-                required: true 
+                required: true ,
+                min: 0,
+                max: 150
             },
             taille: {
-                required: true
+                required: true,
+                min: 45,
+                max: 250
             },
             login: {
                 required: true,
@@ -99,7 +103,7 @@ $(document).ready(function(){
             prenom:{
                 required: "Champ Requis"
             },
-            email:{
+            mail:{
                 required: "Champ Requis"
             },
             ddn:{

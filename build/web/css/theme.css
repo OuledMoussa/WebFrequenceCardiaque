@@ -151,7 +151,8 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
  ******************************************************************************/
 
 div.errorTxt1, div.errorTxt2, div.errorTxt3, div.errorTxt4, div.errorTxt5, div.errorTxt6, 
-div.errorTxt7, div.errorTxt8, div.errorTxt9 {
+div.errorTxt7, div.errorTxt8, div.errorTxt9, div.errorTxt10 {
+    text-align: right;
     color: #f44336;
     font-size: 10px;
     margin-bottom:0px;

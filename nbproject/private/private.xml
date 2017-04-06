@@ -3,19 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/web/js/verifIns.js</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/web/css/theme.css</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/web/materialize-v0.98.0/materialize/css/materialize.min.css</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/src/java/servlet/Inscription.java</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/src/java/DB/DataAccessObject.java</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/web/compte.jsp</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/web/materialize-v0.98.0/materialize/css/materialize.css</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/web/js/main.js</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/web/inscription.jsp</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/src/java/servlet/Connexion.java</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/web/index.jsp</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/web/connexion.jsp</file>
-            <file>file:/C:/Users/sacha/Dropbox/PTUT%20Frequence%20Cardique/FrequenceCardiaque/web/graphique.jsp</file>
+            <file>file:/C:/Users/sacha/Desktop/GitHub/WebFrequenceCardiaque/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/sacha/Desktop/GitHub/WebFrequenceCardiaque/web/js/main.js</file>
+            <file>file:/C:/Users/sacha/Desktop/GitHub/WebFrequenceCardiaque/web/connexion.jsp</file>
+            <file>file:/C:/Users/sacha/Desktop/GitHub/WebFrequenceCardiaque/web/WEB-INF/beans.xml</file>
+            <file>file:/C:/Users/sacha/Desktop/GitHub/WebFrequenceCardiaque/web/inscription.jsp</file>
+            <file>file:/C:/Users/sacha/Desktop/GitHub/WebFrequenceCardiaque/web/css/theme.css</file>
+            <file>file:/C:/Users/sacha/Desktop/GitHub/WebFrequenceCardiaque/web/dossier.jsp</file>
         </group>
     </open-files>
 </project-private>
