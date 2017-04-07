@@ -68,9 +68,6 @@ $(document).ready(function(){
             sexe: {
                 required: true
             },
-            ddn: {
-                required: true
-            },
             poids: {
                 required: true ,
                 min: 0,
@@ -106,9 +103,6 @@ $(document).ready(function(){
             mail:{
                 required: "Champ Requis"
             },
-            ddn:{
-                required: "Champ Requis"
-            },
             poids:{
                 required: "Champ Requis"
             },
@@ -136,7 +130,7 @@ $(document).ready(function(){
           }
         }
         
-        /// Vérifier les valeurs rentrées
+        /// Vérifier les valeurs rentrées ?
      });
    
 });

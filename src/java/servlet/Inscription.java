@@ -72,6 +72,7 @@ public class Inscription extends HttpServlet {
         login = request.getParameter("login");
         mdp =request.getParameter("mdp");
         
+        /*
         System.out.println(nom);
         System.out.println(prenom);
         System.out.println(sexe);
@@ -80,8 +81,15 @@ public class Inscription extends HttpServlet {
         System.out.println(taille);
         System.out.println(mail);
         System.out.println(mdp);
-        
+        */
         // Traitement des données recues
+        // Traitement du sexe
+        if (sexe == "Homme") {
+            sexe = "H";
+        } else {
+            sexe = "F";    
+        }
+
         // Traitement de la date
         String[] date = ddn.split("\\s"); // Filtre les espaces
         // Isole le jour
@@ -95,14 +103,14 @@ public class Inscription extends HttpServlet {
         if (jour.length() == 1) {
             jour = "0" + jour;
         }
-        System.out.println(jour);
+        //System.out.println(jour);
         // Traite le mois
         mois = mois.substring(0,mois.length()-1);
         mois = dateJour(mois);
         
         // Date Finale
         ddn = jour + "/" + mois + "/" + an;
-        System.out.println("Date de naissance : " + ddn);
+        //System.out.println("Date de naissance : " + ddn);
         // Traitement du mot de passe
         
         
@@ -110,6 +118,8 @@ public class Inscription extends HttpServlet {
         DataAccessObject dao = null;
         try {
             dao = new DataAccessObject(getDataSource());
+            
+            dao.nouveauUtilisateur(nom, prenom, ddn, taille, poids, sexe, login, mdp);
         } catch (SQLException ex) {
             Logger.getLogger(Inscription.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -118,7 +128,7 @@ public class Inscription extends HttpServlet {
         // Exécution de la requête
         
         // Une fois bien inséré redirection sur la page de connexion
-        
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

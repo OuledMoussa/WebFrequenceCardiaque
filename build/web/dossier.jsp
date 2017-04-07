@@ -89,6 +89,8 @@
                                 <div class="col s12 m3 l3"></div>
                                 <div class="col s12 m6 l6 center">
                                     <input id="mod" type="button" class="waves-effect waves-light btn blue"value="Modifier">
+                                    <br />
+                                    <br />
                                     <input id="val" type="submit" class="waves-effect waves-light btn blue"value="Valider">
                                 </div>
                                 <!-- Déco -->
@@ -114,14 +116,20 @@
                     $("#diabete").removeAttr("disabled");
                     $("#smin").removeAttr("disabled");
                     $("#smax").removeAttr("disabled");
-                    $("#val").show();
+                    /* Affiche l'intégralité du bouton
+                     * à cause de la classe i du bouton de Materialize
+                     */
+                    $("#val").parent().show();
                } else {
                    $("#fumeur").attr("disabled",true);
                     $("#hta").attr("disabled", true);
                     $("#diabete").attr("disabled", true);
                     $("#smin").attr("disabled", true);
                     $("#smax").attr("disabled", true);
-                    $("#val").hide();
+                    /* Cache l'intégralité du bouton
+                     * à cause de la classe i du bouton de Materialize
+                     */
+                    $("#val").parent().hide();
                }
            });
         });

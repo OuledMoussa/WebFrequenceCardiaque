@@ -65,9 +65,8 @@
                                     </div>
                                     
                                     <div class="input-field col s6 m12 l6">
-                                        <input id="ddn" name="ddn" type="date" class="datepicker validate" data-error=".errorTxt4">
+                                        <input id="ddn" name="ddn" type="date" class="datepicker validate" >
                                         <label for="ddn" class="active">Date de naissance</label>
-                                        <div class="errorTxt4"></div>
                                     </div>
                                     
                                     <div class="input-field col s6 m12 l6">
