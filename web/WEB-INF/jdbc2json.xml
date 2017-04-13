@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE JDBC2JSON SYSTEM "jdbc2json.dtd" >
 <JDBC2JSON>   
-	<DRIVERSTRING>jdbc:oracle:thin:root/root@//localhost:xe</DRIVERSTRING>
+	<DRIVERSTRING>jdbc:derby://localhost:1527/sample;user=app;password=app</DRIVERSTRING>
 	<QUERY name="GraphiquesFQ">
 		select * from enregistrements where id_personne = :pers
 	</QUERY>
         <QUERY name="GraphiquesFQperiode">
-		select * from enregistrements where where id_personne = :pers and date_enregistrement between to_date(:debut,'DD/MM/YYYY') and to_date(:fin,'DD/MM/YYYY')
+		select * from enregistrements where where id_personne = :pers and date_enregistrement between :debut and :fin 
 	</QUERY>
 </JDBC2JSON>
