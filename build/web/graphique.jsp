@@ -34,7 +34,9 @@
                         <div class="col s12 m6">
                             
                             <div id="curve_chart" style="width: 900px; height: 500px; margin: 0 auto;"></div>
-
+                            Afficher les données pour un graphique <a href="jdbc2json/GraphiquesFQ?pers=22">Général</a> <br />
+                            Afficher les données pour un graphique <a href="jdbc2json/GraphiquesFQ?pers=22&debut=06/04/2017&fin=07/04/2017">sur une duréee</a><br />
+                            
                         </div>
                 </div>
             </main>
