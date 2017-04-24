@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import DB.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.enterprise.context.SessionScoped;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
@@ -28,7 +32,24 @@ public class Connexion extends HttpServlet {
 
     
     public DataSource getDataSource() throws SQLException {
+        
+       /* try {
+            Class.forName ("oracle.jdbc.OracleDriver");
+            Connection conn = DriverManager.getConnection
+     ("jdbc:oracle:thin:@//localhost:1521/XE", "root", "root");
+            System.out.println("Passé avec succès !!!!!!");
+     
+     Statement stmt = conn.createStatement();
+     
+       ResultSet rset = stmt.executeQuery("select * from personne");
+     
+         while (rset.next())
+           System.out.println (rset.getString(2));   // Print col 1
        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       */
 		oracle.jdbc.pool.OracleDataSource ds = new oracle.jdbc.pool.OracleDataSource();
                 ds.setDriverType("thin");
 		ds.setUser("root");
@@ -54,7 +75,7 @@ public class Connexion extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-            boolean rs;
+            PersonEntity rs;
             // Récupère l'identifiant de l'utilisateur
             String login = request.getParameter("login");
             // Récupère le mot de passe
@@ -64,13 +85,23 @@ public class Connexion extends HttpServlet {
             DataAccessObject dao = new DataAccessObject(getDataSource());
             
             // Recherche l'utilisateur dans la base de données
+            
             rs = dao.utilisateurConnect(login, mdp);
             
-            if (rs) {
+            if (rs != null) {
                 // On démarre une session pour l'utilisateur
                 HttpSession session = request.getSession(true);
                 // On donne le nom de l'utilisateur à la session
-                session.setAttribute("nom", login);
+                session.setAttribute("nom", rs.getNom());
+                /*
+                 * On met en session l'identifiant de la session pour faire des 
+                 * requêtes avec celui-ci. Cela permetra une meilleure sécurité
+                 * Empeche la modification des données sur la page web elle même
+                 * grâce aux outils du navigateur. Ainsi on ne peut pas récupérer
+                 * les données d'une autre personne.
+                 */
+                session.setAttribute("id", rs.getId());
+                
                 
                 // La personne existe on peut aller sur la page d'acceuil
                 request.getRequestDispatcher("index.jsp").forward(request, response);

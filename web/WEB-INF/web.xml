@@ -12,6 +12,18 @@
         <servlet-name>Inscription</servlet-name>
         <servlet-class>servlet.Inscription</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FrequenceCJsonServlet</servlet-name>
+        <servlet-class>servlet.FrequenceCJsonServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AffichageDossierServlet</servlet-name>
+        <servlet-class>servlet.AffichageDossierServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EnrDossier</servlet-name>
+        <servlet-class>servlet.EnrDossier</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>connexion</servlet-name>
         <url-pattern>/connexion</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>Inscription</servlet-name>
         <url-pattern>/Inscription</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FrequenceCJsonServlet</servlet-name>
+        <url-pattern>/FrequenceCJsonServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AffichageDossierServlet</servlet-name>
+        <url-pattern>/AffichageDossierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EnrDossier</servlet-name>
+        <url-pattern>/EnrDossier</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

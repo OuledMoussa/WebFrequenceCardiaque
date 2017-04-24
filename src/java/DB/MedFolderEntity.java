@@ -14,13 +14,13 @@ public class MedFolderEntity {
     private int idFolder;
     private float tMax;
     private float tMin;
-    private boolean smoke;
-    private boolean hta;
-    private boolean diabete;
+    private String smoke;
+    private String hta;
+    private String diabete;
     private int idPerson;
     
-    public MedFolderEntity(int idFolder, float tMax, float tMin, boolean smoke,
-            boolean hta, boolean diabete, int idPerson){
+    public MedFolderEntity(int idFolder, float tMax, float tMin, String smoke,
+            String hta, String diabete, int idPerson){
         this.idFolder = idFolder;
         this.tMax = tMax;
         this.tMin = tMin;
@@ -42,15 +42,15 @@ public class MedFolderEntity {
         return tMin;
     }
 
-    public boolean isSmoke() {
+    public String isSmoke() {
         return smoke;
     }
 
-    public boolean isHta() {
+    public String isHta() {
         return hta;
     }
 
-    public boolean isDiabete() {
+    public String isDiabete() {
         return diabete;
     }
 
@@ -70,15 +70,15 @@ public class MedFolderEntity {
         this.tMin = tMin;
     }
 
-    public void setSmoke(boolean smoke) {
+    public void setSmoke(String smoke) {
         this.smoke = smoke;
     }
 
-    public void setHta(boolean hta) {
+    public void setHta(String hta) {
         this.hta = hta;
     }
 
-    public void setDiabete(boolean diabete) {
+    public void setDiabete(String diabete) {
         this.diabete = diabete;
     }
 

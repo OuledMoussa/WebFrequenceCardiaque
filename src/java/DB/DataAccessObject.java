@@ -34,14 +34,14 @@ public class DataAccessObject {
     /**
      * Récupère le mot de passe de l'utilisateur
      */
-    public boolean utilisateurConnect(String utilisateur,
+    public PersonEntity utilisateurConnect(String utilisateur,
             String mdp) {
-
-        int test = 0;
+        // Personne qui se connecte
+        PersonEntity personne = null;
         // Requête à exécuter
-        String rq = "select login_personne, mdp_personne "
-                + "from personne where login_personne = ?"
-                + "and mdp_personne = ?";
+        String rq = "SELECT id_personne, nom_personne, login_personne, mdp_personne "
+                + "FROM personne WHERE login_personne = ?"
+                + "AND mdp_personne = ?";
 
         // Connection à la base et création du statement
         try (Connection connect = myDataSource.getConnection();
@@ -55,14 +55,14 @@ public class DataAccessObject {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                test++;
+                personne = new PersonEntity(rs.getInt(1), rs.getString(2));                
             }
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
             Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return test == 1;
+        return personne;
     }
 
     public void nouveauUtilisateur(String nom, String prenom, String ddn, float taille, float poids, String sexe, String login, String mdp) {
@@ -93,21 +93,27 @@ public class DataAccessObject {
 
     }
 
+    /**
+     * Donne le dossier médical du patient
+     * @param id_personne
+     * @return MedFolderEntity Le dossier médical de la perssone
+     * @throws SQLException 
+     */
     public MedFolderEntity getDossierMedical(int id_personne) {
         MedFolderEntity result = null;
         int idFolder;
         float tMax;
         float tMin;
-        boolean smoke;
-        boolean hta;
-        boolean diabete;
+        String smoke;
+        String hta;
+        String diabete;
         int idPerson;
 
         String rq;
 
-        rq = "Select * "
-                + "From dossiermedical "
-                + "Where dossiermedical.id_personne = ? ";
+        rq = "SELECT *"
+                + "FROM dossiermedical "
+                + "WHERE dossiermedical.id_personne = ? ";
 
         try (Connection connect = myDataSource.getConnection();
                 PreparedStatement ps = connect.prepareStatement(rq)) {
@@ -116,15 +122,17 @@ public class DataAccessObject {
             ps.setInt(1, id_personne);
             
             try (ResultSet rs = ps.executeQuery()) {
+                rs.next();
+                
+                idFolder = rs.getInt(1);
+                tMax = rs.getFloat(2);
+                tMin = rs.getFloat(3);
+                smoke = rs.getString(4);
+                hta = rs.getString(5);
+                diabete = rs.getString(6);
+                idPerson = rs.getInt(7);
 
-                idFolder = rs.getInt("idFolder");
-                tMax = rs.getFloat("tMax");
-                tMin = rs.getFloat("tMin");
-                smoke = rs.getBoolean("smoke");
-                hta = rs.getBoolean("hta");
-                diabete = rs.getBoolean("diabete");
-                idPerson = rs.getInt("idPerson");
-
+                
                 result = new MedFolderEntity(idFolder, tMax, tMin, smoke,
                         hta, diabete, idPerson);
             }
@@ -146,9 +154,9 @@ public class DataAccessObject {
         String login;
         String password;
 
-        String rq = "Select * "
-                + "From personne "
-                + "Where peronne.id_personne = ? ";
+        String rq = "SELECT * "
+                + "FROM personne "
+                + "WHERE peronne.id_personne = ? ";
 
         try (Connection connect = myDataSource.getConnection();
                 PreparedStatement ps = connect.prepareStatement(rq)) {
@@ -179,7 +187,9 @@ public class DataAccessObject {
 
     public void updateInfoPerson(int id_personne, String nom, String prenom, String ddn, float taille, float poids, String sexe, String login, String mdp) throws SQLException {
                 
-        String rq = "update personne set nom_personne = ?, prenom_personne = ?, date_naissance = ?, taille_personne = ?, sexe_personne = ? where id_personne = ?";
+        String rq = "UPDATE personne SET nom_personne = ?, prenom_personne = ?, "
+                + "date_naissance = ?, taille_personne = ?, sexe_personne = ? "
+                + "WHERE id_personne = ?";
         
         try (Connection connect = myDataSource.getConnection();
                 PreparedStatement ps = connect.prepareStatement(rq)) {
@@ -194,8 +204,67 @@ public class DataAccessObject {
             ps.setString(7, login);
             ps.setString(8, mdp);
             
-            
             ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    /**
+     * 
+     */
+    public List<EnrEntity> frequenceFQ(int id_personne) throws SQLException {
+        // Requête qui récupère uniquement la date, la fréquence et les seuils du médecin        
+        String rq = "SELECT enr.date_enregistrement, enr.frequence_cardiaque_enr, dm.seuil_max_medecin, dm.seuil_min_medecin "
+                + "FROM enregistrements enr  INNER JOIN dossiermedical dm ON enr.id_personne = dm.id_personne  "
+                + "WHERE enr.id_personne = ?";
+        
+        // Liste qui va contenir les enregistrements
+        List<EnrEntity> enr = new LinkedList<>();
+        try (Connection connect = myDataSource.getConnection();
+                PreparedStatement ps = connect.prepareStatement(rq)) {
+            
+            // Insère les données à modifier de la personne dans la requête
+            ps.setInt(1, id_personne);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                enr.add(new EnrEntity(rs.getFloat(2), rs.getString(1), rs.getFloat(3), rs.getFloat(4)));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return enr;
+    }
+    
+    /**
+     * Modifie les données d'un 
+     * @param id Numéro de la personne
+     * @param fume Boolean pour fumeur ou non
+     * @param hta Boolean pour hta ou non
+     * @param diabete Boolean pour diabétique ou non
+     * @param smin Float Seuil Minimum du médecin
+     * @param smax Float Seuil Maximum du médecin
+     */
+    public void modifDossier(int id, String fume, String hta, String diabete, float smin, float smax) {
+        String rq = "UPDATE dossiermedical SET seuil_min_medecin = ?, "
+                + "seuil_max_medecin = ?, fumeur = ?, hypertension = ?, diabete = ?"
+                + "WHERE id_personne = ?";
+        
+        try (Connection connect = myDataSource.getConnection();
+                PreparedStatement ps = connect.prepareStatement(rq)){
+            
+            ps.setFloat(1, smin);
+            ps.setFloat(2, smax);
+            ps.setString(3, fume);
+            ps.setString(4, hta);
+            ps.setString(5, diabete);
+            ps.setInt(6, id);
+            
+            ps.executeUpdate();
+            
         } catch (SQLException ex) {
             Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
         }

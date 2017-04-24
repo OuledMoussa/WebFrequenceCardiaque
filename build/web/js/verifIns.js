@@ -51,7 +51,75 @@ $(document).ready(function(){
       $("#insc").submit();
    });
    
-   
+   $("#ddn_root").focusout(function() {
+       // Récupère la date
+       var date = $("#ddn").val();
+       var ndate = date.split(" ");
+       // Traite la date
+       // Jour
+       var jour = ndate[0];
+       if (jour.length == 1) {
+           jour = "0" + jour;
+       }
+       // Mois
+       var mois = ndate[1].substr(0,ndate[1].length-1);
+       switch(mois) {
+           case "January":
+               mois = "01";
+               break;
+           case "Februrary":
+               mois = "02";
+               break;
+           case "March":
+               mois = "03";
+               break;
+           case "April":
+               mois = "04";
+               break;
+           case "May":
+               mois = "05";
+               break;
+           case "June":
+               mois = "06";
+               break;
+           case "July":
+               mois = "07";
+               break;
+           case "August":
+               mois = "08";
+               break;
+           case "September":
+               mois = "09";
+               break;
+           case "October":
+               mois = "10";
+               break;
+           case "November":
+               mois = "11";
+               break;
+           case "December":
+               mois = "12";
+               break;
+       }
+       // An
+       var an = ndate[2];
+       // Date au format Français
+       var dateFr = jour + "/" + mois + "/" + an;
+       // Date actuelle
+       var now = new Date();
+       
+       // Vérification de fausses dates
+       if( Date.parse(dt) > now) {
+           console.log("FR : " + Date.parse(dt));
+           console.log("now : " + now);
+           console.log("Fausse date!")
+       } else {
+           console.log("FR : " + Date.parse(dt));
+           console.log("now : " + now);
+           console.log("Bonne date !")
+       }
+       //console.log(dateFr);
+   });
   
    $("#insc").validate({
         rules: {
@@ -121,6 +189,7 @@ $(document).ready(function(){
         },
         errorElement : 'div',
         errorPlacement: function(error, element) {
+          console.log($(element).val());
           var placement = $(element).toggleClass('invalid');
           var placement = $(element).data('error');
           if (placement) {

@@ -10,22 +10,20 @@ package DB;
  * @author sacha
  */
 public class EnrEntity {
-    private int idEnr;
     private float freq;
     private String dateEnr;
-    private int idPerson;
+    private float fmax;
+    private float fmin;
     
-    public EnrEntity(int idEnr, float freq, String date, int idPerson) {
-        this.idEnr = idEnr;
+    public EnrEntity(float freq, String date, float fmax, float fmin) {
         this.freq = freq;
         this.dateEnr = date;
-        this.idPerson = idPerson;
+        this.fmin = fmax;
+        this.fmax = fmin;
     }
-
-    public int getIdEnr() {
-        return idEnr;
-    }
-
+    
+    // Ensemble des getters
+    
     public float getFreq() {
         return freq;
     }
@@ -34,14 +32,16 @@ public class EnrEntity {
         return dateEnr;
     }
 
-    public int getIdPerson() {
-        return idPerson;
+    public float getFmax() {
+        return fmax;
     }
 
-    public void setIdEnr(int idEnr) {
-        this.idEnr = idEnr;
+    public float getFmin() {
+        return fmin;
     }
 
+    // Ensemble des setters
+    
     public void setFreq(float freq) {
         this.freq = freq;
     }
@@ -50,9 +50,13 @@ public class EnrEntity {
         this.dateEnr = dateEnr;
     }
 
-    public void setIdPerson(int idPerson) {
-        this.idPerson = idPerson;
+    public void setFmax(float fmax) {
+        this.fmax = fmax;
     }
-    
+
+    public void setFmin(float fmin) {
+        this.fmin = fmin;
+    }
+        
     
     }

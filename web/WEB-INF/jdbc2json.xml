@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE JDBC2JSON SYSTEM "jdbc2json.dtd" >
-<JDBC2JSON>   
-	<DRIVERSTRING>jdbc:derby://localhost:1527/sample;user=app;password=app</DRIVERSTRING>
+<JDBC2JSON>
+	<DRIVERSTRING>jdbc:oracle:thin:root/root@//localhost:1521/xe</DRIVERSTRING>
 	<QUERY name="GraphiquesFQ">
-		select * from enregistrements where id_personne = :pers
+		SELECT * FROM ENREGISTREMENTS WHERE ID_PERSONNE = CAST(:pers A NUMBER)
+	</QUERY>
+        <QUERY name="GraphiquesFQTest">
+		SELECT enr.date_enregistrement, enr.frequence_cardiaque_enr, dm.seuil_max_medecin, dm.seuil_min_medecin FROM ENREGISTREMENTS enr INNER JOIN DOSSIERMEDICAL dm ON enr.id_personne = dm.id_personne  WHERE enr.ID_PERSONNE = 22
 	</QUERY>
         <QUERY name="GraphiquesFQperiode">
-		select * from enregistrements where where id_personne = :pers and date_enregistrement between :debut and :fin 
+		select * from enregistrements where date_enregistrement between to_date(':debut','DD/MM/YYYY') and to_date(':fin','DD/MM/YYYY')
 	</QUERY>
 </JDBC2JSON>

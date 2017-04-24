@@ -43,25 +43,25 @@
 
 
                 <div class="container">
-                    <form class="row">
+                    <div class="row">
                         <!-- Déco -->
                         <div class="col s12 m2 l2"></div>
                         <!-- Partie contenant les données -->
-                        <div class="col s12 m8 l8">
+                        <form class="col s12 m8 l8"  action="EnrDossier" method="POST">
                             <div class="row">
                                 <!-- Partie gauche -->
                                 <div class="col s6 m6 l6">
                                     <p class="center-align"> Habitudes </p>
                                     <p>
-                                        <input type="checkbox" id="fumeur" disabled> 
+                                        <input type="checkbox" id="fumeur" name="fumeur" class="blue" disabled> 
                                         <label for="fumeur">Vous fumez</label>
                                     </p>
                                     <p>
-                                        <input type="checkbox" id="hta" disabled>
+                                        <input type="checkbox" id="hta" name="hta" disabled>
                                         <label for="hta">Vous avez des problèmes d'hypertension</label>
                                     </p>
                                     <p>
-                                        <input type="checkbox" id="diabete" disabled>
+                                        <input type="checkbox" id="diabete" name="diabete" disabled>
                                         <label for="diabete">Vous êtes diabétique</label>
                                     </p>
                                     
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12 m12 l12">
-                                            <input id="smin" name="smin" type="number" class="validate" min="40" max="180" data-error=".errorTxt2" disabled>
+                                            <input id="smin" name="smin" type="number" class="validate" min="40" max="200" data-error=".errorTxt2" disabled>
                                             <label for="smin" class="active">Seuil Minimum</label>
                                         </div>
                                     </div>
@@ -96,10 +96,10 @@
                                 <!-- Déco -->
                                 <div class="col s12 m3 l3"></div>
                             </div>
-                        </div>
+                        </form>
                         <!-- Déco -->
                         <div class="col s12 m2 l2"></div>
-                    </form>
+                    </div>
                 </div>
             </main>
 
@@ -108,9 +108,53 @@
             
     <script>
         $(document).ready(function(){
-            $("#val").hide();
+            
+                /* 
+                 * Requete Ajax Permettant de récupérer les données du tableau
+                 * et de modifier les valeurs des cases à cocher
+                 */
+                jQuery.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: "AffichageDossierServlet",
+                    success: function (data) {
+                        // Met les données dans les inputs correspondant
+                        var fume = $(data).get(0).smoke.toString();
+                        var hta = $(data).get(0).hta.toString();
+                        var diabete = $(data).get(0).diabete.toLocaleString();
+                        
+                        /* 
+                         * Vérifie les valeurs de la base de données
+                         * pour cocher les cases du formulaire
+                         */
+                        if (fume.search("true") >= 0) {
+                            $('#fumeur').prop('checked', true);                            
+                        }
+                        if (hta.search("true") >= 0) {
+                            $('#hta').prop('checked', true);
+                        }
+                        if (diabete.search("true") >= 0){
+                            $('#diabete').prop('checked', true);
+                        }
+
+                        // Modifie la valeur des inputs des seuils
+                        $('#smin').val($(data).get(0).tMin);
+                        $('#smin').next().addClass("active");
+                        $('#smax').val($(data).get(0).tMax);
+                        $('#smax').next().addClass("active");         
+                        
+                    }
+                });
+                       
+           // Cache le bouton de validation
+           $("#val").hide();
+           
+           /*
+            * Active / Désactive les composants du formulaire
+            */
            $("#mod").click(function(){
                if ($("#fumeur").attr("disabled") == "disabled") {
+                   // Désactive les composants
                     $("#fumeur").removeAttr("disabled");
                     $("#hta").removeAttr("disabled");
                     $("#diabete").removeAttr("disabled");
@@ -121,6 +165,7 @@
                      */
                     $("#val").parent().show();
                } else {
+                   // Active les composants
                    $("#fumeur").attr("disabled",true);
                     $("#hta").attr("disabled", true);
                     $("#diabete").attr("disabled", true);

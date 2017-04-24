@@ -49,6 +49,12 @@ main {
     color: #2196f3;
 }
 
+
+[type="checkbox"]:checked + label:before {
+  border-right: 2px solid #2196f3;
+  border-bottom: 2px solid #2196f3;
+}
+
 /* label underline focus color */
 .input-field input[type=text]:focus {
     border-bottom: 1px solid #2196f3;

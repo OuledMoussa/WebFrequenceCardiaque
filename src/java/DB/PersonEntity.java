@@ -20,6 +20,17 @@ public class PersonEntity {
     private String login;
     private String password;
     
+    /**
+     * Constructeur complet de personnes
+     * @param id Identifiant de la personne
+     * @param prenom Prenom
+     * @param nom Nom
+     * @param date Date de naissance
+     * @param taille Taille
+     * @param poids Poids
+     * @param login Identifiant web
+     * @param pwd Mot de passe
+     */
     public PersonEntity(int id, String prenom, String nom, String date,
             float taille, float poids, String login, String pwd) {
         this.id = id;
@@ -32,6 +43,18 @@ public class PersonEntity {
         this.password = pwd;
     }
 
+    /**
+     * Constructeur alternatif de personnes contenant le nom et l'identifiant
+     * @param id Identifiant de la personne
+     * @param nom Nom de la personne
+     */
+    public PersonEntity(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+    
+    // Getters
+    
     public int getId() {
         return id;
     }
@@ -64,6 +87,9 @@ public class PersonEntity {
         return password;
     }
 
+    
+    // Setters
+    
     public void setId(int id) {
         this.id = id;
     }

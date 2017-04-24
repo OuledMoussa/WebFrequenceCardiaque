@@ -11,8 +11,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Inscription</title>
-        <!-- Materialize CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"> 
+      <!-- Materialize CSS -->
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"> 
         <!-- surcharge pour le thème material-->
         <link rel="stylesheet" href="css/theme.css">
         <!-- Animation pour le coeur -->
@@ -65,7 +65,7 @@
                                     </div>
                                     
                                     <div class="input-field col s6 m12 l6">
-                                        <input id="ddn" name="ddn" type="date" class="datepicker validate" >
+                                        <input id="ddn" name="ddn" type="date" class="datepicker" >
                                         <label for="ddn" class="active">Date de naissance</label>
                                     </div>
                                     
