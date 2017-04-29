@@ -52,7 +52,7 @@
                         Contenu de la page 
                     -->
                     <div class="col s12 m6 l12">
-                        <form class="row" id="frm" action="RecupInfoPersonne" method="POST">
+                        <form id="compte" class="row" action="RecupInfoPersonne" method="POST">
 
                             <div class="col s12 m6 l6">
                                 <div class="card horizontal blue lighten-5">
@@ -102,42 +102,42 @@
                                         <p>
                                             <div class="row">
                                                 <div class="input-field col s6 m12 l6">
-                                                    <input id="poids" name="poids" type="number" class="validate" min="0" max="150" data-error=".errorTxt5" disabled>
+                                                    <input id="poids" name="poids" type="number" class="validate" min="0" max="150" data-error=".errorTxt1" disabled>
                                                     <label for="poids" class="active">Poids</label>
+                                                    <div class="errorTxt1"></div>
+                                                </div>
+
+                                                <div class="input-field col s6 m12 l6">
+                                                    <input id="taille" name="taille" type="number" class="validate" min="50" max="250" data-error=".errorTxt2" disabled>
+                                                    <label for="taille" class="active">Taille</label>
+                                                    <div class="errorTxt2"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="input-field col s6 m12 l6">
+                                                    <input id="mail" name="mail" type="text" class="validate" data-error=".errorTxt3" disabled>
+                                                    <label for="mail" class="active">Adresse Mail</label>
+                                                    <div class="errorTxt3"></div>
+                                                </div>
+                                                <div class="input-field col s6 m12 l6">
+                                                    <input id="login" name="login" type="text" class="validate" data-error=".errorTxt4" disabled>
+                                                    <label for="login" class="active">Identifiant</label>
+                                                    <div class="errorTxt4"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="input-field col s6 m12 l6">
+                                                    <input id="mdp" name="mdp" type="password" class="validate" data-error=".errorTxt5" disabled>
+                                                    <label for="mdp" class="active">Mot de passe</label>
                                                     <div class="errorTxt5"></div>
                                                 </div>
 
                                                 <div class="input-field col s6 m12 l6">
-                                                    <input id="taille" name="taille" type="number" class="validate" min="50" max="250" data-error=".errorTxt6" disabled>
-                                                    <label for="taille" class="active">Taille</label>
-                                                    <div class="errorTxt6"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="input-field col s6 m12 l6">
-                                                    <input id="mail" name="mail" type="text" class="validate" data-error=".errorTxt10" disabled>
-                                                    <label for="mail" class="active">Adresse Mail</label>
-                                                    <div class="errorTxt10"></div>
-                                                </div>
-                                                <div class="input-field col s6 m12 l6">
-                                                    <input id="identifiant" name="login" type="text" class="validate" data-error=".errorTxt7" disabled>
-                                                    <label for="identifiant" class="active">Identifiant</label>
-                                                    <div class="errorTxt7"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="input-field col s6 m12 l6">
-                                                    <input id="mdp" name="mdp" type="password" class="validate" data-error=".errorTxt8" disabled>
-                                                    <label for="mdp" class="active">Mot de passe</label>
-                                                    <div class="errorTxt8"></div>
-                                                </div>
-
-                                                <div class="input-field col s6 m12 l6">
-                                                    <input id="mdp2" name="mdp2" type="password" class="validate" data-error=".errorTxt9" disabled>
+                                                    <input id="mdp2" name="mdp2" type="password" class="validate" data-error=".errorTxt6" disabled>
                                                     <label for="mdp2" class="active">Confirmez votre mot de passe.</label>
-                                                    <div class="errorTxt9"></div>
+                                                    <div class="errorTxt6"></div>
                                                 </div>
                                             </div>
                                         </p>
@@ -199,13 +199,13 @@
                         $('#poids').val(data.poids);
                         $('#taille').val(data.taille);
                         $('#mail').val(data.mail);
-                        $('#identifiant').val(data.login);                        
+                        $('#login').val(data.login);                        
                         // Met la classe active pour ne pas avoir 
                         // les informations et le texte les un sur les autres
                         $('#poids').next().addClass("active");
                         $('#taille').next().addClass("active");
                         $('#mail').next().addClass("active");
-                        $('#identifiant').next().addClass("active");
+                        $('#login').next().addClass("active");
                         
                     }
                 });
@@ -222,8 +222,10 @@
                    $("#poids").removeAttr("disabled");
                    $("#taille").removeAttr("disabled");
                    $("#mail").removeAttr("disabled");
-                   $("#identifiant").removeAttr("disabled");
+                   $("#login").removeAttr("disabled");
                    $("#ddn").removeAttr("disabled");
+                   $("#mdp").removeAttr("disabled");
+                   $("#mdp2").removeAttr("disabled");
                    /* Affiche l'intégralité du bouton
                     * à cause de la classe i du bouton de Materialize
                     */
@@ -235,81 +237,50 @@
                    $("#mail").attr("disabled", true);
                    $("#identifiant").attr("disabled", true);
                    $("#ddn").attr("disabled", true);
+                   $("#mdp").attr("disabled", true);
+                   $("#mdp2").attr("disabled", true);
                    /* Cache l'intégralité du bouton
                     * à cause de la classe i du bouton de Materialize
                     */
                    $("#val").parent().hide();
                }
            });
-           
-           
-           
-           
-           $("#frm").validate({
+
+// Vérifie le mot de passe pour une personne qui modifie son compte
+    $("#compte").validate({
         rules: {
-            mail: {
-                email:true
-            },
-            poids: {
-                min: 0,
-                max: 150
-            },
-            taille: {
-                min: 45,
-                max: 250
-            },
             login: {
                 minlength: 5
             },
             mdp: {
-				minlength: 5
-			},
-			mdp2: {
-				minlength: 5,
-				equalTo: "#mdp"
-			}
-        },
-        //For custom messages
-        messages: {
-            mail:{
-                required: "Champ Requis"
+                minlength: 5,
+                
             },
-            poids:{
-                required: "Champ Requis"
+            mdp2: {
+                minlength: 5,
+                equalTo: "#mdp"
             },
-            taille:{
-                required: "Champ Requis"
-            },
-            login:{
-                required: "Champ Requis"
-            },
-            mdp:{
-                required: "Champ Requis"
-            },
-            mdp2:{
-                required: "Champ Requis"
-            }
-        },
-        errorElement : 'div',
-        errorPlacement: function(error, element) {
-          console.log($(element).val());
-          var placement = $(element).toggleClass('invalid');
-          var placement = $(element).data('error');
-          if (placement) {
-            $(placement).append(error);
-          } else {
-            error.insertAfter(element);
-          }
-        }
         
-        /// Vérifier les valeurs rentrées ?
-     });
-           
-           
-           
-           
-           
+        },
+            errorElement: 'div',
+            errorPlacement: function (error, element) {
+                console.log($(element).val());
+                var placement = $(element).toggleClass('invalid');
+                var placement = $(element).data('error');
+                if (placement) {
+                    $(placement).append(error);
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        
+    });
+
+
+
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+    
     </body>
 </html>
