@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Déconnecte l'utilisateur de l'application, et détruit tout les objets qui 
+ * ont été créés pour ce utilisateur.
  * @author sacha
  */
 @WebServlet(name = "Deconnexion", urlPatterns = {"/Deconnexion"})
@@ -35,12 +36,16 @@ public class Deconnexion extends HttpServlet {
         
         // On Cherche la session en cours
         HttpSession session = request.getSession(true);
-        session.setAttribute("nom", null);
+        
+        // Destruction de toutes les variables en cour pour l'utilisateur connecté
+        session.removeAttribute("id");
+        session.removeAttribute("nom");
+        session.removeAttribute("prenom");
+        session.removeAttribute("persoimg");
         
         // Redirection
         request.getRequestDispatcher("index.jsp").forward(request, response);
-        
-        
+                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

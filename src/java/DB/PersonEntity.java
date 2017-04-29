@@ -17,8 +17,11 @@ public class PersonEntity {
     private String date;
     private float taille;
     private float poids;
+    private String sexe;
+    private String mail;
     private String login;
     private String password;
+    private String img;
     
     /**
      * Constructeur complet de personnes
@@ -28,17 +31,20 @@ public class PersonEntity {
      * @param date Date de naissance
      * @param taille Taille
      * @param poids Poids
+     * @param mail Adresse mail
      * @param login Identifiant web
      * @param pwd Mot de passe
      */
     public PersonEntity(int id, String prenom, String nom, String date,
-            float taille, float poids, String login, String pwd) {
+            float taille, float poids, String mail, String login, String pwd) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.date = date;
         this.taille = taille;
         this.poids = poids;
+        this.sexe = sexe;
+        this.mail = mail;
         this.login = login;
         this.password = pwd;
     }
@@ -53,6 +59,32 @@ public class PersonEntity {
         this.nom = nom;
     }
     
+    /**
+     * Constructeur alternatif pour la récupération des données du compte de
+     * l'utilisateur
+     * @param ddn Date de naissance de la personne
+     * @param taille Taille de la personne
+     * @param poids Poids de la personne
+     * @param mail Adresse mail de la personne
+     * @param login Login de connexion de la personne
+     */
+    public PersonEntity(String ddn, float taille, float poids, String sexe, String mail, String login) {
+        this.date = ddn;
+        this.taille = taille;
+        this.poids = poids;
+        this.sexe = sexe;
+        this.mail = mail;
+        this.login = login;
+    }
+    
+    public PersonEntity(int id, String nom, String prenom, String img) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.img = img;
+    }
+
+
     // Getters
     
     public int getId() {
@@ -87,6 +119,18 @@ public class PersonEntity {
         return password;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public String getSexe() {
+        return sexe;
+    }
+    
+    
+    public String getImg() {
+        return img;
+    }
     
     // Setters
     
@@ -121,4 +165,18 @@ public class PersonEntity {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setSexe(String sexe) {
+        this.sexe = sexe;
+    }
+    
+    
 }

@@ -18,6 +18,9 @@ main {
     color: grey;
 }
 
+.card {
+    background-color: #bbdefb;
+}
 
 /*******************************************************************************
  *                        Couleurs du texte du Dropdown 
@@ -30,6 +33,16 @@ main {
 /*******************************************************************************
  *            Change les couleurs des inputs quand on clique dessus 
  ******************************************************************************/
+
+/* Change la couleur du bouton pour l'upload d'un fichier */
+.btn {
+    background-color: #2196f3;
+}
+/* Modifie l'annimation lors du survol du bouton par la souris */
+.btn:hover {
+    background-color: #2196f3;
+}
+
 
 /* label color */
 .input-field label {

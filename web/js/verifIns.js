@@ -1,127 +1,17 @@
-$(document).ready(function(){
-    // Vérifie les valeurs rentrées dans la page
-    
-    /*
-    $('#inscription').click(function(){
-        $("input").each(function(){
-            alert("nom " + $(this).attr("name") + " valeur  = " + $(this).val());
-        });
+// Vérifie les valeurs rentrées dans la page
+$(document).ready(function () {
+    $("#inscription").click(function () {
+        $("#insc").submit();
     });
-    */
 
-//   function verif() {
-//    var form = document.forms[0];
-//    // Compteur d'élement du formulaire
-//    var i;
-//    // Retour si erreur
-//    var msg = "";
-//    for (i = 0; form.length < i; i++) {
-//        switch(form[i].name) {
-//            case "poids":
-//                if (0 < this.value ) {
-//                    msg += "Le poids rentré est incorrect !";
-//                } else if (this.value < 150) {
-//                    msg += "Le poids rentré est incorrect !";
-//                }
-//                break;
-//            case "taille":
-//                if (50 < this.value ) {
-//                    msg += "La taille rentrée est incorrecte !";
-//                } else if (this.value < 250) {
-//                    msg += "La taille rentrée est incorrecte !";
-//                }
-//                break;
-//            case "ddn":
-//
-//                break;
-//            default:
-//        }
-//    }
-//    // Compare si les deux mots de passe sont identiques
-//    var mdp1 = document.getElementById("mdp");
-//    var mdp2 = document.getElementById("mdp2");
-//    if (mdp1.value != mdp2.value) {
-//        alert("les mots de passes sont différents");
-//    }
-//   }
-//   document.getElementById("inscription").onclick = verif;
-   
-   
-   $("#inscription").click(function(){
-      $("#insc").submit();
-   });
-   
-   $("#ddn_root").focusout(function() {
-       // Récupère la date
-       var date = $("#ddn").val();
-       var ndate = date.split(" ");
-       // Traite la date
-       // Jour
-       var jour = ndate[0];
-       if (jour.length == 1) {
-           jour = "0" + jour;
-       }
-       // Mois
-       var mois = ndate[1].substr(0,ndate[1].length-1);
-       switch(mois) {
-           case "January":
-               mois = "01";
-               break;
-           case "Februrary":
-               mois = "02";
-               break;
-           case "March":
-               mois = "03";
-               break;
-           case "April":
-               mois = "04";
-               break;
-           case "May":
-               mois = "05";
-               break;
-           case "June":
-               mois = "06";
-               break;
-           case "July":
-               mois = "07";
-               break;
-           case "August":
-               mois = "08";
-               break;
-           case "September":
-               mois = "09";
-               break;
-           case "October":
-               mois = "10";
-               break;
-           case "November":
-               mois = "11";
-               break;
-           case "December":
-               mois = "12";
-               break;
-       }
-       // An
-       var an = ndate[2];
-       // Date au format Français
-       var dateFr = jour + "/" + mois + "/" + an;
-       // Date actuelle
-       var now = new Date();
-       
-       // Vérification de fausses dates
-       if( Date.parse(dt) > now) {
-           console.log("FR : " + Date.parse(dt));
-           console.log("now : " + now);
-           console.log("Fausse date!")
-       } else {
-           console.log("FR : " + Date.parse(dt));
-           console.log("now : " + now);
-           console.log("Bonne date !")
-       }
-       //console.log(dateFr);
-   });
-  
-   $("#insc").validate({
+    // Teste si la date est bonne (si elle est bien avant aujourd'hui)
+    $("#ddn_root").focusout(function () {
+        // Récupère la date
+        var date = $("#ddn").val();
+
+    });
+
+    $("#insc").validate({
         rules: {
             nom: {
                 required: true
@@ -131,13 +21,13 @@ $(document).ready(function(){
             },
             mail: {
                 required: true,
-                email:true
+                email: true
             },
             sexe: {
                 required: true
             },
             poids: {
-                required: true ,
+                required: true,
                 min: 0,
                 max: 150
             },
@@ -151,55 +41,107 @@ $(document).ready(function(){
                 minlength: 5
             },
             mdp: {
-				required: true,
-				minlength: 5
-			},
-			mdp2: {
-				required: true,
-				minlength: 5,
-				equalTo: "#mdp"
-			}
+                required: true,
+                minlength: 5
+            },
+            mdp2: {
+                required: true,
+                minlength: 5,
+                equalTo: "#mdp"
+            }
         },
         //For custom messages
         messages: {
-            nom:{
+            nom: {
                 required: "Champ Requis"
             },
-            prenom:{
+            prenom: {
                 required: "Champ Requis"
             },
-            mail:{
+            mail: {
                 required: "Champ Requis"
             },
-            poids:{
+            poids: {
                 required: "Champ Requis"
             },
-            taille:{
+            taille: {
                 required: "Champ Requis"
             },
-            login:{
+            login: {
                 required: "Champ Requis"
             },
-            mdp:{
+            mdp: {
                 required: "Champ Requis"
             },
-            mdp2:{
+            mdp2: {
                 required: "Champ Requis"
             }
         },
-        errorElement : 'div',
-        errorPlacement: function(error, element) {
-          console.log($(element).val());
-          var placement = $(element).toggleClass('invalid');
-          var placement = $(element).data('error');
-          if (placement) {
-            $(placement).append(error);
-          } else {
-            error.insertAfter(element);
-          }
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
+            console.log($(element).val());
+            var placement = $(element).toggleClass('invalid');
+            var placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error);
+            } else {
+                error.insertAfter(element);
+            }
         }
-        
+
         /// Vérifier les valeurs rentrées ?
-     });
-   
+    });
+
+
+    // Méthode pour la vérification de la date
+    $.validator.addMethod(
+        "dated1",
+        function(value, element) {
+            var d1 = value.toString();
+            var d2 = $("#d2").val();
+            var test = true;
+            if (parseInt(d1.substring(6,10)) > parseInt(d2.substring(6,10))) {
+                test = false;
+            } else {
+                if (parseInt(d1.substring(6,10)) === parseInt(d2.substring(6,10))) {
+                    if (parseInt(d1.substring(3,5)) > parseInt(d2.substring(3,5))) {
+                        test = false;
+                    } else {
+                        if (parseInt(d1.substring(3,5)) === parseInt(d2.substring(3,5))) {
+                            if (parseInt(d1.substring(0,2)) > parseInt(d2.substring(0,2))) {
+                                test = false;
+                            } else {
+                                if (parseInt(d1.substring(0,2)) === parseInt(d2.substring(0,2))) {
+                                    return true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return test;
+        },
+        "La date doit être plus petite que d2"
+    );
+
+
+    $("#date").validate({
+        rules: {
+            d1: {
+                required: true,
+                dated1:true
+            },
+            d2: {
+                required: true
+            },
+            errorElement: 'div',
+            errorPlacement: function (error, element) {
+                if (placement) {
+                $(placement).append(error);
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        }
+    });
 });

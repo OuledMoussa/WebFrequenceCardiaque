@@ -23,7 +23,8 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
- *
+ * Génère en JSON la liste des enregistrement pour la personne actuellement
+ * connectée au site. Le JSON est directement inscrit dans la page.
  * @author sacha
  */
 @WebServlet(name = "FrequenceCJsonServlet", urlPatterns = {"/FrequenceCJsonServlet"})
@@ -66,8 +67,6 @@ public class FrequenceCJsonServlet extends HttpServlet {
             
             // Récupère les méthodes du DAO
             DataAccessObject dao = new DataAccessObject(getDataSource());
-            
-            System.out.println(session.getAttribute("id").toString());
             
             // Eécute la requête et la sauvegarde
             List<EnrEntity> donnees = dao.frequenceFQ(Integer.parseInt(session.getAttribute("id").toString()));

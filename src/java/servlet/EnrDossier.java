@@ -20,7 +20,9 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
- *
+ * Gère quelles sont les informations qui ont été modifiées sur la page de 
+ * modification du dossier, puis les inscrit dans la base de données.
+ * Une fois les données dans la base renvoi sur la page du dossier médical.
  * @author sacha
  */
 @WebServlet(name = "EnrDossier", urlPatterns = {"/EnrDossier"})
@@ -71,14 +73,6 @@ public class EnrDossier extends HttpServlet {
             Float max = Float.parseFloat(request.getParameter("smax"));
             int id = Integer.parseInt(session.getAttribute("id").toString());
             
-            System.out.println("Début");
-            System.out.println(fume);
-            System.out.println(hta);
-            System.out.println(diabete);
-            System.out.println(min);
-            System.out.println(max);
-            System.out.println("Fin");
-            
             // Traitement des valeurs reçues
             if (fume == null) {
                 fume = "false";
@@ -103,7 +97,7 @@ public class EnrDossier extends HttpServlet {
             dao.modifDossier(id, fume, hta, diabete, min, max);
             
             // La personne existe on peut aller sur la page d'acceuil
-            request.getRequestDispatcher("dossier.jsp").forward(request, response);
+            request.getRequestDispatcher("dossiermedical.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(EnrDossier.class.getName()).log(Level.SEVERE, null, ex);
         }

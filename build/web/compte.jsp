@@ -52,18 +52,17 @@
                         Contenu de la page 
                     -->
                     <div class="col s12 m6 l12">
-                        <div class="row">
+                        <form class="row" id="frm" action="RecupInfoPersonne" method="POST">
 
                             <div class="col s12 m6 l6">
-                                <div class="card horizontal">
+                                <div class="card horizontal blue lighten-5">
                                     <div class="card-image waves-effect waves-block waves-light">
-                                        <img class="activator" src="img/8biticon.jpg">
+                                        <img class="activator" src="${sessionScope.persoimg}">
                                     </div>
 
                                     <div class="card-stacked">
                                         <div class="card-content">
                                             <span class="card-title">${sessionScope.prenom} ${sessionScope.nom}</span>
-                                            <br />
                                             <p>
 
                                             <div class="input-field col s12 m12 l12">
@@ -71,7 +70,7 @@
                                                 <div class="row">
                                                     <div class="input-field col s12 m12 l12">
                                                         <label for="sexe" class="active">Sexe</label>
-                                                        <select id="sexe" name="sexe" class="validate">
+                                                        <select id="sexe" name="sexe" class="validate" disabled>
                                                             <option value="Homme">Homme</option>
                                                             <option value="Femme">Femme</option>
                                                         </select>
@@ -82,83 +81,77 @@
                                                 <!-- Deuxième ligne contenant la date de naissance de la personne -->
                                                 <div class="row">
                                                     <div class="input-field col s12 m12 l12">
-                                                        <input id="ddn" name="ddn" type="date" class="datepicker" >
-                                                        <label for="ddn" class="active">Date de naissance</label>
+                                                        <input id="ddn" name="ddn" type="date" class="datepicker" disabled>
+                                                        <label for="ddn" id="dp" class="active">Date de naissance</label>
                                                     </div>
                                                 </div>
-
-
+                                                
                                             </div>
-
+                                            Changer l'image du profil <a href="changeImage.jsp">ici</a>
                                             </p>
                                         </div>
                                     </div>
-
 
                                 </div>
                             </div>
 
                             <div class="col s12 m6">
-                                <div class="card white-grey darken-1">
+                                <div class="card blue lighten-5">
                                     <div class="card-content">
                                         <span class="card-title">Mes informations</span>
                                         <p>
-                                        <div class="row">
-                                            <div class="input-field col s6 m12 l6">
-                                                <input id="poids" name="poids" type="number" class="validate" min="0" max="150" data-error=".errorTxt5">
-                                                <label for="poids" class="active">Poids</label>
-                                                <div class="errorTxt5"></div>
+                                            <div class="row">
+                                                <div class="input-field col s6 m12 l6">
+                                                    <input id="poids" name="poids" type="number" class="validate" min="0" max="150" data-error=".errorTxt5" disabled>
+                                                    <label for="poids" class="active">Poids</label>
+                                                    <div class="errorTxt5"></div>
+                                                </div>
+
+                                                <div class="input-field col s6 m12 l6">
+                                                    <input id="taille" name="taille" type="number" class="validate" min="50" max="250" data-error=".errorTxt6" disabled>
+                                                    <label for="taille" class="active">Taille</label>
+                                                    <div class="errorTxt6"></div>
+                                                </div>
                                             </div>
 
-                                            <div class="input-field col s6 m12 l6">
-                                                <input id="taille" name="taille" type="number" class="validate" min="50" max="250" data-error=".errorTxt6">
-                                                <label for="taille" class="active">Taille</label>
-                                                <div class="errorTxt6"></div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="input-field col s6 m12 l6">
-                                                <input id="mail" name="mail" type="text" class="validate" data-error=".errorTxt10">
-                                                <label for="mail" class="active">Adresse Mail</label>
-                                                <div class="errorTxt10"></div>
-                                            </div>
-                                            <div class="input-field col s6 m12 l6">
-                                                <input id="identifiant" name="login" type="text" class="validate" data-error=".errorTxt7">
-                                                <label for="identifiant" class="active">Identifiant</label>
-                                                <div class="errorTxt7"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="input-field col s6 m12 l6">
-                                                <input id="mdp" name="mdp" type="password" class="validate" data-error=".errorTxt8">
-                                                <label for="mdp" class="active">Mot de passe</label>
-                                                <div class="errorTxt8"></div>
+                                            <div class="row">
+                                                <div class="input-field col s6 m12 l6">
+                                                    <input id="mail" name="mail" type="text" class="validate" data-error=".errorTxt10" disabled>
+                                                    <label for="mail" class="active">Adresse Mail</label>
+                                                    <div class="errorTxt10"></div>
+                                                </div>
+                                                <div class="input-field col s6 m12 l6">
+                                                    <input id="identifiant" name="login" type="text" class="validate" data-error=".errorTxt7" disabled>
+                                                    <label for="identifiant" class="active">Identifiant</label>
+                                                    <div class="errorTxt7"></div>
+                                                </div>
                                             </div>
 
-                                            <div class="input-field col s6 m12 l6">
-                                                <input id="mdp2" name="mdp2" type="password" class="validate" data-error=".errorTxt9">
-                                                <label for="mdp2" class="active">Confirmez votre mot de passe.</label>
-                                                <div class="errorTxt9"></div>
-                                            </div>
-                                        </div>
+                                            <div class="row">
+                                                <div class="input-field col s6 m12 l6">
+                                                    <input id="mdp" name="mdp" type="password" class="validate" data-error=".errorTxt8" disabled>
+                                                    <label for="mdp" class="active">Mot de passe</label>
+                                                    <div class="errorTxt8"></div>
+                                                </div>
 
+                                                <div class="input-field col s6 m12 l6">
+                                                    <input id="mdp2" name="mdp2" type="password" class="validate" data-error=".errorTxt9" disabled>
+                                                    <label for="mdp2" class="active">Confirmez votre mot de passe.</label>
+                                                    <div class="errorTxt9"></div>
+                                                </div>
+                                            </div>
                                         </p>
                                     </div>
                                     <div class="card-action">
                                         <div class="center">
                                             <input type="button" id="mod" class="waves-effect waves-light btn blue" value="Modifier">
-                                            <input type="button" id="val" class="waves-effect waves-light btn blue" value="Valider">
+                                            <input type="submit" id="val" class="waves-effect waves-light btn blue" value="Valider">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-
-
-
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -166,6 +159,157 @@
 
         <!-- Pied de page du site -->
         <%@include file="pied.jsp" %>
-
+<script>
+        $(document).ready(function(){
+            
+                /* 
+                 * Requete Ajax permettant de récupérer les données de la base
+                 * pour ensuite pouvoir les modifer
+                 */
+                jQuery.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: "JsonCompte",
+                    success: function (data) {                        
+                        /* 
+                         * Vérifie les valeurs de la base de données
+                         * pour les options values
+                         */
+                        if (data.sexe == "F") {
+                            console.log("test");
+                            $("#sexe").val("Femme");
+                            // Permet de modifier la valeur de la liste déroulante
+                            $('#sexe').material_select();
+                        } else {
+                            $("#sexe").val("Homme");
+                            // Permet de modifier la valeur de la liste déroulante
+                            $('#sexe').material_select();
+                        }
+                        // Gestion de la date de naissance
+                        var date = data.date;
+                        date = date.substr(0,10);
+                        var jour = date.substr(8,9);
+                        var mois = date.substr(5,2);
+                        var an = date.substr(0,4);
+                        date = jour + "/" + mois + "/" + an;
+                        //var picker = $input.pickadate('picker');
+                        $('#ddn').val(date);
+                        $('#dp').addClass("active");
+                        // Modifie la valeur des inputss
+                        $('#poids').val(data.poids);
+                        $('#taille').val(data.taille);
+                        $('#mail').val(data.mail);
+                        $('#identifiant').val(data.login);                        
+                        // Met la classe active pour ne pas avoir 
+                        // les informations et le texte les un sur les autres
+                        $('#poids').next().addClass("active");
+                        $('#taille').next().addClass("active");
+                        $('#mail').next().addClass("active");
+                        $('#identifiant').next().addClass("active");
+                        
+                    }
+                });
+                       
+           // Cache le bouton de validation
+           $("#val").hide();
+           
+           /*
+            * Active / Désactive les composants du formulaire
+            */
+           $("#mod").click(function(){
+               if ($("#poids").attr("disabled") == "disabled") {
+                   // Désactive les composants
+                   $("#poids").removeAttr("disabled");
+                   $("#taille").removeAttr("disabled");
+                   $("#mail").removeAttr("disabled");
+                   $("#identifiant").removeAttr("disabled");
+                   $("#ddn").removeAttr("disabled");
+                   /* Affiche l'intégralité du bouton
+                    * à cause de la classe i du bouton de Materialize
+                    */
+                   $("#val").parent().show();
+               } else {
+                   // Active les composants
+                   $("#poids").attr("disabled",true);
+                   $("#taille").attr("disabled", true);
+                   $("#mail").attr("disabled", true);
+                   $("#identifiant").attr("disabled", true);
+                   $("#ddn").attr("disabled", true);
+                   /* Cache l'intégralité du bouton
+                    * à cause de la classe i du bouton de Materialize
+                    */
+                   $("#val").parent().hide();
+               }
+           });
+           
+           
+           
+           
+           $("#frm").validate({
+        rules: {
+            mail: {
+                email:true
+            },
+            poids: {
+                min: 0,
+                max: 150
+            },
+            taille: {
+                min: 45,
+                max: 250
+            },
+            login: {
+                minlength: 5
+            },
+            mdp: {
+				minlength: 5
+			},
+			mdp2: {
+				minlength: 5,
+				equalTo: "#mdp"
+			}
+        },
+        //For custom messages
+        messages: {
+            mail:{
+                required: "Champ Requis"
+            },
+            poids:{
+                required: "Champ Requis"
+            },
+            taille:{
+                required: "Champ Requis"
+            },
+            login:{
+                required: "Champ Requis"
+            },
+            mdp:{
+                required: "Champ Requis"
+            },
+            mdp2:{
+                required: "Champ Requis"
+            }
+        },
+        errorElement : 'div',
+        errorPlacement: function(error, element) {
+          console.log($(element).val());
+          var placement = $(element).toggleClass('invalid');
+          var placement = $(element).data('error');
+          if (placement) {
+            $(placement).append(error);
+          } else {
+            error.insertAfter(element);
+          }
+        }
+        
+        /// Vérifier les valeurs rentrées ?
+     });
+           
+           
+           
+           
+           
+        });
+    </script>
     </body>
 </html>

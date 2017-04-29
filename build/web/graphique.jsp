@@ -31,12 +31,34 @@
         <main>
             <div class="section no-pad-bot" id="index-banner">
                 <div class="container">
-                    <div class="col s12 m6">
+                    <form class="col s12 m12 l12" method="post" action="graphiquePeriode.jsp" id="date">
 
                         <div id="curve_chart" style="width: 900px; height: 500px; margin: 0 auto;"></div>
+                        <div class="row center"> 
+                            <p>Voir mon activité sur une autre période</p><br />
+                            <!-- Mise en page -->
+                            <div class="col s12 m12 l2"></div>
+                                <!-- Conteneur du texte et du choix des dates -->
+                            <div class="col s12 m12 l8">
+                                <div class="input-field col s12 m6 l6">
+                                    <input id="d1" name="d1" type="date" class="datepicker">
+                                    <label for="d1" id="dp" class="active">Début de la période</label>
+                                </div>
+                                <div class="input-field col s12 m6 l6">
+                                    <input id="d2" name="d2" type="date" class="datepicker">
+                                    <label for="d2" id="dp" class="active">Fin de la période</label>
+                                </div>
+                            </div>
+                            <!-- Mise en page -->
+                            <div class="col s12 m12 l2"></div>
+                            <br />
+                        </div>
+                        <div class="row center">
+                            <input class="waves-effect waves-light btn blue center" type="submit" value="Envoyer">
+                        </div>
                         
 
-                    </div>
+                    </form>
                 </div>
         </main>
 
@@ -132,6 +154,7 @@
             });
 
         </script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+        <script src="js/verifIns.js"></script>
     </body>
 </html>

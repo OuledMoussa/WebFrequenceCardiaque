@@ -54,7 +54,23 @@
                 <div class="parallax-container">
                     <div class="parallax"><img src="img/vélo_montagne.jpg"></div>
                 </div>
-
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div id="egg">
+                    <div class="parallax-container">
+                        <div class="parallax"><img src="img/egg.jpg"></div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
             
         </main>
 
@@ -63,8 +79,24 @@
 
         <script>
             $(document).ready(function(){
-      $('.parallax').parallax();
-    });
+                $('#egg').hide();
+                $('.parallax').parallax();
+                // Easter Egg
+                if ( window.addEventListener ) {
+                        var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+                        window.addEventListener("keydown", function(e){
+                                kkeys.push( e.keyCode );
+                                if ( kkeys.toString().indexOf( konami ) >= 0 ) {
+                                        $('#egg').show();
+                                        return false;
+                                }
+                        }, true);
+                }
+              });
+              
+            
+
+    
         </script>
     </body>
 </html>

@@ -24,6 +24,30 @@
         <servlet-name>EnrDossier</servlet-name>
         <servlet-class>servlet.EnrDossier</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecupInfoPersonne</servlet-name>
+        <servlet-class>servlet.RecupInfoPersonne</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JsonCompte</servlet-name>
+        <servlet-class>servlet.JsonCompte</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestDossier</servlet-name>
+        <servlet-class>servlet.TestDossier</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AjoutDossier</servlet-name>
+        <servlet-class>servlet.AjoutDossier</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModifImage</servlet-name>
+        <servlet-class>servlet.ModifImage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FrequencePeriode</servlet-name>
+        <servlet-class>servlet.FrequencePeriode</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>connexion</servlet-name>
         <url-pattern>/connexion</url-pattern>
@@ -47,6 +71,37 @@
     <servlet-mapping>
         <servlet-name>EnrDossier</servlet-name>
         <url-pattern>/EnrDossier</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecupInfoPersonne</servlet-name>
+        <url-pattern>/RecupInfoPersonne</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JsonCompte</servlet-name>
+        <url-pattern>/JsonCompte</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestDossier</servlet-name>
+        <url-pattern>/TestDossier</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjoutDossier</servlet-name>
+        <url-pattern>/AjoutDossier</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModifImage</servlet-name>
+        <url-pattern>/ModifImage</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+    C:/Users/sacha/Desktop/GitHub/WebFrequenceCardiaque/web/img/pers/
+ </param-value>
+    </context-param>
+    <servlet-mapping>
+        <servlet-name>FrequencePeriode</servlet-name>
+        <url-pattern>/FrequencePeriode</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

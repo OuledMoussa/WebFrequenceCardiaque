@@ -24,7 +24,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Connecte l'utilisateur à l'application, et récupère les données de celui-ci
+ * dans la base de données pour les mettre dans les paramètre de session de
+ * l'utilisateur.
  * @author sacha
  */
 @WebServlet(name = "Connexion", urlPatterns = {"/Connexion"})
@@ -32,24 +34,6 @@ public class Connexion extends HttpServlet {
 
     
     public DataSource getDataSource() throws SQLException {
-        
-       /* try {
-            Class.forName ("oracle.jdbc.OracleDriver");
-            Connection conn = DriverManager.getConnection
-     ("jdbc:oracle:thin:@//localhost:1521/XE", "root", "root");
-            System.out.println("Passé avec succès !!!!!!");
-     
-     Statement stmt = conn.createStatement();
-     
-       ResultSet rset = stmt.executeQuery("select * from personne");
-     
-         while (rset.next())
-           System.out.println (rset.getString(2));   // Print col 1
-       
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       */
 		oracle.jdbc.pool.OracleDataSource ds = new oracle.jdbc.pool.OracleDataSource();
                 ds.setDriverType("thin");
 		ds.setUser("root");
@@ -91,8 +75,6 @@ public class Connexion extends HttpServlet {
             if (rs != null) {
                 // On démarre une session pour l'utilisateur
                 HttpSession session = request.getSession(true);
-                // On donne le nom de l'utilisateur à la session
-                session.setAttribute("nom", rs.getNom());
                 /*
                  * On met en session l'identifiant de la session pour faire des 
                  * requêtes avec celui-ci. Cela permetra une meilleure sécurité
@@ -100,8 +82,13 @@ public class Connexion extends HttpServlet {
                  * grâce aux outils du navigateur. Ainsi on ne peut pas récupérer
                  * les données d'une autre personne.
                  */
-                session.setAttribute("id", rs.getId());
-                
+                session.setAttribute("id", rs.getId());                
+
+                // On donne le nom de l'utilisateur à la session
+                session.setAttribute("nom", rs.getNom());
+                session.setAttribute("prenom", rs.getPrenom());
+                // On met en session l'image de la personne;
+                session.setAttribute("persoimg", rs.getImg());
                 
                 // La personne existe on peut aller sur la page d'acceuil
                 request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
- *
+ * 
  * @author sacha
  */
 @WebServlet(name = "AffichageDossierServlet", urlPatterns = {"/AffichageDossierServlet"})
@@ -65,14 +65,13 @@ public class AffichageDossierServlet extends HttpServlet {
             // Récupère la session de l'administrateur
             HttpSession session = request.getSession(true);
             
-             // Récupère les méthodes du DAO
+            // Récupère les méthodes du DAO
             DataAccessObject dao = new DataAccessObject(getDataSource());
             
             // Eécute la requête et la sauvegarde
             MedFolderEntity donnees = dao.getDossierMedical(Integer.parseInt(session.getAttribute("id").toString()));
             // Le parse Integer permet d'éviter l'erreur Object
-            
-            System.out.println(donnees);
+
             
             // Met les données au format Json
             Gson gson = new Gson();

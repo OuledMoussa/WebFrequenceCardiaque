@@ -12,15 +12,15 @@
                             <a class="dropdown-button" data-activates="options" data-beloworigin="true">
                                 <div class="chip">
 
-                                    <img src="img/8biticon.jpg" alt="${sessionScope.nom}">
-                                        ${sessionScope.nom} 
+                                    <img src="${sessionScope.persoimg}" alt="${sessionScope.nom}">
+                                        ${sessionScope.nom} ${sessionScope.prenom}
                                 </div>
                             </a>
                         </li>
                         <!-- Dropdown Structure -->
                         <ul id="options" class="dropdown-content">
                           <li><a href="graphique.jsp">Mon Activit&eacute;</a></li>
-                          <li><a href="dossier.jsp">Mon Dossier</a></li>
+                          <li><a href="TestDossier">Mon Dossier</a></li>
                           <li><a href="compte.jsp">Mon Compte</a></li>
                           <li class="divider"></li>
                           <li><a href="Deconnexion">D&eacute;connexion</a></li>
@@ -32,12 +32,12 @@
           <li><div class="userView">
             <div class="background blue">
             </div>
-                  <a href="#!user"><img class="circle" src="img/8biticon.jpg"></a>
-            <a href="#!name"><span class="white-text name">${sessionScope.nom}</span></a>
+                  <a href="#!user"><img class="circle" src="${sessionScope.persoimg}"></a>
+            <a href="#!name"><span class="white-text name">${sessionScope.nom} ${sessionScope.prenom}</span></a>
             <a href="#!email"><span class="white-text email"></span></a>
           </div></li>
                         <li><a href="graphique.jsp">Mon Activit&eacute;</a></li>
-                          <li><a href="dossier.jsp">Mon Dossier</a></li>
+                          <li><a href="TestDossier">Mon Dossier</a></li>
                           <li><a href="compte.jsp">Mon Compte</a></li>
                           <li class="divider"></li>
                           <li><a href="Deconnexion">D&eacute;connexion</a></li>
