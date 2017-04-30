@@ -52,7 +52,13 @@
                 <br />
                 </div>
                 <div class="parallax-container">
-                    <div class="parallax"><img src="img/vélo_montagne.jpg"></div>
+                    <div class="parallax"><img src="img/velo-cyclisme.jpg"></div>
+                </div>
+                <br />
+                <h3 class="header center deep-orange-text">Quelque soit votre sport</h3>
+                <br />
+                <div class="parallax-container">
+                    <div class="parallax"><img src="img/foot.jpg"></div>
                 </div>
                 <br />
                 <br />
@@ -60,16 +66,6 @@
                 <br />
                 <br />
                 <br />
-                <div id="egg">
-                    <div class="parallax-container">
-                        <div class="parallax"><img src="img/egg.jpg"></div>
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
                 </div>
             
         </main>
