@@ -34,6 +34,16 @@
                     <form class="col s12 m12 l12" method="post" action="">
 
                         <div id="curve_chart" style="width: 900px; height: 500px; margin: 0 auto;"></div>
+                        <div class="row center">
+                            <div class="col s12 m12 l12">
+                                <br />
+                                Vos indicateurs statistiques<br />
+                                Valeur max : <div id="max"></div>
+                                Valeur moyenne : <div id="moy"></div>
+                                Valeur min : <div id="min"></div>
+                                <br />
+                            </div>
+                        </div>
                         <div class="row center"> 
                             <p>Voir mon activité sur une autre période</p><br />
                             <!-- Mise en page -->
@@ -83,15 +93,7 @@
                     dataType: 'json',
                     url: "FrequencePeriode?debut=<%= (String)request.getParameter("d1")%>&fin=<%= (String)request.getParameter("d2")%>",
                     success: function (data) {
-                        /*
-                         // Inscrit chaque donnée dans le tableau de données Code pour JDBC2JSON
-                         $(data).each(function () {
-                         // Création de l'objet 
-                         //var obj = new Array((this)[2], $(this)[1]);
-                         var obj = new Array((this)[0], $(this)[1], $(this)[2], $(this)[3]);
-                         // Ajout du nouvel objet dans le tableau
-                         donnees.push(obj);
-                         */
+
                         // Inscrit chaque donnée dans le tableau de données Code pour Servlet
                          $(data).each(function () {
                          // Création de l'objet avec les valeurs
@@ -99,6 +101,22 @@
                          // Ajout du nouvel objet dans le tableau
                          donnees.push(obj);
                         });
+                    }
+                });
+                
+                
+                
+                
+                // Requete Ajax Permettant de récupérer les stats de la personne
+                jQuery.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: "Stat?debut=<%= (String)request.getParameter("d1")%>&fin=<%= (String)request.getParameter("d2")%>",
+                    success: function (data) {
+                        // Inscrit chaque donnée dans le tableau de données Code pour Servlet
+                         $('#max').html(data[0]);
+                         $('#moy').html(data[1]);
+                         $('#min').html(data[2]);
                     }
                 });
 
@@ -114,9 +132,9 @@
                      *  Nom de chacune des données
                      */
                     data.addColumn('string', 'Heure');
-                    data.addColumn('number', 'Batement');
-                    data.addColumn('number', 'Seuil min');
+                    data.addColumn('number', 'Battement');
                     data.addColumn('number', 'Seuil max');
+                    data.addColumn('number', 'Seuil min');
 
                     // Données principales
                     data.addRows(donnees);

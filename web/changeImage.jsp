@@ -38,7 +38,7 @@
                                 Le texte sera en dessous du header
                                 Consseillé pour un titre
                             -->
-                            <h2> Modifier son image de profil </h2>
+                            <h2 class="header center deep-orange-text"> Modifier son image de profil </h2>
                         </div>
                     </div>
                 </div>

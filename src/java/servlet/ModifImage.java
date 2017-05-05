@@ -69,7 +69,7 @@ public class ModifImage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            // Récupère la session de l'administrateur
+            // Récupère la session de l'utilisateur
             HttpSession session = request.getSession(true);
             
             // Met a jour le compte de la personne avec la nouvelle photo
@@ -77,27 +77,27 @@ public class ModifImage extends HttpServlet {
             
             
             DiskFileItemFactory factory = new DiskFileItemFactory();
-            // maximum size that will be stored in memory
+            // Taille maximum du fichier
             factory.setSizeThreshold(1000 * 1024);
-            // Location to save data that is larger than maxMemSize.
+            // Emplacement du dossier ou va atterrir 
             factory.setRepository(new File(chemin));
 
-            // Create a new file upload handler
+            // Instancie l'upload
             ServletFileUpload upload = new ServletFileUpload(factory);
-            // maximum file size to be uploaded.
+            // Remet la taille max du fichier
             upload.setSizeMax(1000 * 1024);
 
             // Récupère l'image envoyée
             List fileItems = upload.parseRequest(request);
 
-            // Process the uploaded file items
+            // Upload le fichier
             Iterator i = fileItems.iterator();
             File file = null;
             String filePath = getServletContext().getInitParameter("file-upload");
             while (i.hasNext()) {
                 FileItem fi = (FileItem) i.next();
                 if (!fi.isFormField()) {
-                    // Get the uploaded file parameters
+                    // Obtient les informations
                     String fieldName = fi.getFieldName();
                     
                     // Obtient l'extension du fichier
@@ -111,7 +111,7 @@ public class ModifImage extends HttpServlet {
                     String contentType = fi.getContentType();
                     boolean isInMemory = fi.isInMemory();
                     long sizeInBytes = fi.getSize();
-                    // Write the file
+                    // Ecrire le fichier
                     if (fileName.lastIndexOf("\\") >= 0) {
                         file = new File(filePath
                                 + fileName.substring(fileName.lastIndexOf("\\")));

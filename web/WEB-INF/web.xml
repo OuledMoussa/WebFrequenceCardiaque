@@ -48,6 +48,10 @@
         <servlet-name>FrequencePeriode</servlet-name>
         <servlet-class>servlet.FrequencePeriode</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Stat</servlet-name>
+        <servlet-class>servlet.Stat</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>connexion</servlet-name>
         <url-pattern>/connexion</url-pattern>
@@ -102,6 +106,10 @@
     <servlet-mapping>
         <servlet-name>FrequencePeriode</servlet-name>
         <url-pattern>/FrequencePeriode</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Stat</servlet-name>
+        <url-pattern>/Stat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

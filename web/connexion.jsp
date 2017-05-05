@@ -52,6 +52,11 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col s12 m12 l3"></div>
+                                <div class="col s12 m12 l6" id="error" style="color: red; text-align: center;"></div>
+                                <div class="col s12 m12 l3"></div>
+                            </div>
+                            <div class="row">
                                 <div class="input-field col s12 m12 l12 center">
                                     <input type="submit" class="waves-effect waves-light btn blue" value="Connexion">
                                     <br />
@@ -67,6 +72,11 @@
             
     <script>
 $(document).ready(function(){
+    var url = document.location.href;
+    // vérifie si il y a une erreur ou non de connexion
+    if (url.substring(url.lastIndexOf("/")+1) == "Connexion") {
+        $('#error').html("Login ou mot de passe incorrect")
+    }
     
     // Permet d'animer les champs de formulaire
     Materialize.updateTextFields();

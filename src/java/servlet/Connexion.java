@@ -93,7 +93,6 @@ public class Connexion extends HttpServlet {
                 // La personne existe on peut aller sur la page d'acceuil
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
-                // Erreur on retourne saisir login + mdp
                 request.getRequestDispatcher("connexion.jsp").forward(request, response);
             }
         } catch (SQLException ex) {

@@ -85,8 +85,8 @@ public class DataAccessObject {
 
         query = "insert into personne(nom_personne, prenom_personne, "
                 + "date_naissance, taille_personne, poids_personne, "
-                + "sexe_personne, login_personne, mdp_personne, mail_personne)"
-                + "values(?,?,to_date(?,'DD/MM/YYYY'),?,?,?,?,?,?)";
+                + "sexe_personne, login_personne, mdp_personne, mail_personne, img_personne)"
+                + "values(?,?,to_date(?,'DD/MM/YYYY'),?,?,?,?,?,?,'./img/pers/new.jpg')";
 
         try (Connection connect = myDataSource.getConnection();
                 PreparedStatement ps = connect.prepareStatement(query)) {
@@ -421,6 +421,84 @@ public class DataAccessObject {
         
         // Met à jour la base de données
         ps.executeUpdate();
+        
+    }
+    
+    
+    
+    /**
+     * Renvoi les informations statistiques de base
+     * @param id_personne Identifiant de la personne dans la base de données (int)
+     * @return tableau des resultats
+     */
+    public String[] stats(int id_personne) {
+        // Initialisation de l'objet Personne qui va recevoir les données
+        String stat[] = {"","",""};
+        
+        // Requête qui va être exécutée
+        String rq = "SELECT round(max(frequence_cardiaque_enr),0), round(avg(frequence_cardiaque_enr),0), round(min(frequence_cardiaque_enr),0)"
+                + "FROM enregistrements WHERE id_personne = ?";
+        
+        try (Connection connect = myDataSource.getConnection();
+                PreparedStatement ps = connect.prepareStatement(rq)){
+            
+           // Ajoute l'identifiant de l'utilisateur à la requête
+           ps.setInt(1, id_personne);
+            
+           // Exécute la requête
+           ResultSet rs = ps.executeQuery();
+           
+           // Récupère les données
+           rs.next();
+           stat[0] =  String.valueOf(rs.getFloat(1));
+           stat[1] = String.valueOf(rs.getFloat(2));
+           stat[2] = String.valueOf(rs.getFloat(3));
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return stat;
+        
+    }
+    
+    
+    /**
+     * Renvoi les informations statistiques de base pour une période donnée
+     * @param id_personne Identifiant de la personne dans la base de données (int)
+     * @return tableau des resultats
+     */
+    public String[] statsPeriode(int id_personne, String debut, String fin) {
+        // Initialisation de l'objet Personne qui va recevoir les données
+        String stat[] = {"","",""};
+        
+        // Requête qui va être exécutée
+        String rq = "SELECT round(max(frequence_cardiaque_enr),0), round(avg(frequence_cardiaque_enr),0), round(min(frequence_cardiaque_enr),0)"
+                + "FROM enregistrements "
+                + "WHERE id_personne = ?"
+                + "and date_enregistrement between to_date(?,'DD/MM/YYYY') and to_date(?,'DD/MM/YYYY')";
+        
+        try (Connection connect = myDataSource.getConnection();
+                PreparedStatement ps = connect.prepareStatement(rq)){
+            
+           // Ajoute l'identifiant de l'utilisateur à la requête
+           ps.setInt(1, id_personne);
+           // Met les dates
+           ps.setString(2, debut);
+           ps.setString(3, fin);
+           
+           // Exécute la requête
+           ResultSet rs = ps.executeQuery();
+           
+           // Récupère les données
+           rs.next();
+           stat[0] =  String.valueOf(rs.getFloat(1));
+           stat[1] = String.valueOf(rs.getFloat(2));
+           stat[2] = String.valueOf(rs.getFloat(3));
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return stat;
         
     }
         

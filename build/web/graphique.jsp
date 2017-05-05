@@ -34,8 +34,17 @@
                     <form class="col s12 m12 l12" method="post" action="graphiquePeriode.jsp" id="date">
 
                         <div id="curve_chart" style="width: 900px; height: 500px; margin: 0 auto;"></div>
-                        <div class="row center"> 
-                            <p>Voir mon activité sur une autre période</p><br />
+                        <div class="row center">
+                            <div class="col s12 m12 l12">
+                                <br />
+                                Vos indicateurs statistiques<br />
+                                Valeur max : <div id="max"></div>
+                                Valeur moyenne : <div id="moy"></div>
+                                Valeur min : <div id="min"></div>
+                                <br />
+                            </div>
+                        </div>
+                        <div class="row center">                            
                             <!-- Mise en page -->
                             <div class="col s12 m12 l2"></div>
                                 <!-- Conteneur du texte et du choix des dates -->
@@ -102,6 +111,21 @@
                     }
                 });
 
+
+                // Requete Ajax Permettant de récupérer les stats de la personne
+                jQuery.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: "Stat",
+                    success: function (data) {
+                        // Inscrit chaque donnée dans le tableau de données Code pour Servlet
+                         $('#max').html(data[0]);
+                         $('#moy').html(data[1]);
+                         $('#min').html(data[2]);
+                    }
+                });
+
+
                 /* 
                  * Permet de faire afficher dans le tableau toutes les données
                  * qui ont étés récupérées grâce à la requête Ajax
@@ -114,9 +138,9 @@
                      *  Nom de chacune des données
                      */
                     data.addColumn('string', 'Heure');
-                    data.addColumn('number', 'Batement');
-                    data.addColumn('number', 'Seuil min');
+                    data.addColumn('number', 'Battement');
                     data.addColumn('number', 'Seuil max');
+                    data.addColumn('number', 'Seuil min');
 
                     // Données principales
                     data.addRows(donnees);
@@ -141,9 +165,6 @@
                             }
                         }
                     };
-
-// formatter3 = new google.visualization.DateFormat({pattern: "EEE, MMM d, ''yy"});
-
 
                     // Cherche l'objet qui va recevoir le tableau
                     var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));

@@ -6,14 +6,14 @@
                 <p class="grey-text text-lighten-4">Projet du semestre 2 </p>
             </div>
         <div class="col l4 offset-l2 s12 m12">
-            <h5 class="white-text">Liens</h5>
+            <h5 class="white-text">Cr&eacute;ateurs</h5>
             <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Cassajus Nicolas</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Farenc Margaux</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Le Guelvoui Alexandre</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Marco Corentin</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Robert Alexandre</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Ouled Moussa Hamza</a></li>
+                <li><a class="grey-text text-lighten-3" href="info.jsp">Cassajus Nicolas</a></li>
+                <li><a class="grey-text text-lighten-3" href="info.jsp">Farenc Margaux</a></li>
+                <li><a class="grey-text text-lighten-3" href="info.jsp">Le Guelvoui Alexandre</a></li>
+                <li><a class="grey-text text-lighten-3" href="info.jsp">Marco Corentin</a></li>
+                <li><a class="grey-text text-lighten-3" href="info.jsp">Robert Alexandre</a></li>
+                <li><a class="grey-text text-lighten-3" href="info.jsp">Ouled Moussa Hamza</a></li>
             </ul>
         </div>
         </div>
@@ -21,7 +21,7 @@
     <div class="footer-copyright">
         <div class="container">
         © 2017 Copyright
-        <a class="grey-text text-lighten-4 right" href="#!">Plus d'info</a>
+        <a class="grey-text text-lighten-4 right" href="info.jsp">Plus d'info</a>
         </div>
     </div>
 </footer>
